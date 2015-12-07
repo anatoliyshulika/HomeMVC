@@ -1,0 +1,17 @@
+﻿@model HomeMVC.Bake
+@{
+    Layout = null;
+}
+<div class="_devices">
+    <span class="_bakePanelName">@Model.Name</span>
+    <button type="button" class="_buttonDelete" onclick="location.href='@Url.Action("Delete", "Bake", new { name = @Model.Name} )'">X</button>
+    @{
+        foreach (var burner in ((IDictionary<string, Devices>)Model.GetBurnerList()))
+        {
+            Html.RenderPartial(burner.Value.ViewPath, burner.Value);
+        }
+    }
+    @{
+        Html.RenderPartial(((Oven)Model.GetBakeOven()).ViewPath, ((Oven)Model.GetBakeOven()));
+    }
+</div>

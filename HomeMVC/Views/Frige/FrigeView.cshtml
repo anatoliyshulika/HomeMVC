@@ -1,0 +1,51 @@
+﻿@model HomeMVC.Frige
+@{
+    Layout = null;
+}
+<div class="_devices">
+    <span class="_panelName">@Model.Name</span>
+    @{
+        if (Model.State)
+        {
+            <span class="_paneState">On</span>
+        }
+        else
+        {
+            <span class="_paneState">Off</span>
+        }
+    }
+    <button type="button" class="_buttonDelete" onclick="location.href='@Url.Action("Delete", "Frige", new { name = @Model.Name} )'">X</button>
+    <img src="~/Content/Picture/Frige.jpg" class="_frigeImage" />
+    <button type="button" class="_frigeButtonOnOff" onclick="location.href='@Url.Action("OnOff", "Frige", new { name = @Model.Name} )'">OnOff</button>
+    @{
+        if (Model.GetLampState())
+        {
+            <span class="_frigePanelLampState">Lamp On</span>
+        }
+        else
+        {
+            <span class="_frigePanelLampState">Lamp Off</span>
+        }
+}
+    <button type="button" class="_frigeButtonOnOff" onclick="location.href='@Url.Action("LampOnOff", "Frige", new { name = @Model.Name })'">OnOff</button>
+    <button type="button" class="_frigeButtonFrizingLevel" onclick="location.href='@Url.Action("LevelDown", "Frige", new { name = @Model.Name })'"><</button>
+    <button type="button" class="_frigeButtonFrizingLevel" onclick="location.href='@Url.Action("LevelUp", "Frige", new { name = @Model.Name })'">></button>
+    @{
+        if (!Model.State)
+        {
+            <span class="_frigePanelFrizingLevel">Frizing level</span>
+        }
+        else if (Model.State && Model.FrigeLevel == SetLevel.Low)
+        {
+            <span class="_frigePanelFrizingLevel">Frizing level - Low</span>
+        }
+        else if (Model.State && Model.FrigeLevel == SetLevel.Medium)
+        {
+            <span class="_frigePanelFrizingLevel">Frizing level - Medium</span>
+        }
+        else if (Model.State && Model.FrigeLevel == SetLevel.Height)
+        {
+            <span class="_frigePanelFrizingLevel">Frizing level - Height</span>
+        }
+    }
+</div>

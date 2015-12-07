@@ -1,0 +1,29 @@
+﻿@model HomeMVC.Lamp
+@{
+    Layout = null;
+}
+<div class="_devices">
+    <span class="_panelName">@Model.Name</span>
+    @{
+        if (Model.State)
+        {
+            <span class="_paneState">On</span>
+        }
+        else
+        {
+            <span class="_paneState">Off</span>
+        }
+    }
+    <button type="button" class="_buttonDelete" onclick="location.href='@Url.Action("Delete", "Lamp", new { name = @Model.Name} )'">X</button>
+    @{
+        if (Model.State)
+        {
+            <img src="~/Content/Picture/LampOn.jpg" class="_lampImage" />
+        }
+        else
+        {
+            <img src="~/Content/Picture/LampOff.jpg" class="_lampImage" />
+        }
+    }
+    <button type="button" class="_lampButtonOnOff" onclick="location.href='@Url.Action("OnOff", "Lamp", new { name = @Model.Name} )'">OnOff</button>
+</div>

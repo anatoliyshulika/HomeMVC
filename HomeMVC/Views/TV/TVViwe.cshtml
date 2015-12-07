@@ -1,0 +1,88 @@
+﻿@model HomeMVC.TV
+@{
+    Layout = null;
+}
+<div class="_devices">
+    <span class="_panelName">@Model.Name</span>
+    @{
+        if (Model.State)
+        {
+            <span class="_paneState">On</span>
+        }
+        else
+        {
+            <span class="_paneState">Off</span>
+        }
+    }
+    <button type="button" class="_buttonDelete" onclick="location.href='@Url.Action("Delete", "TV", new { name = @Model.Name} )'">X</button>
+    @{
+        if (!Model.State)
+        {
+            <img src="~/Content/Picture/TVoff.jpg" class="_tvImage" />
+        }
+        else
+        {
+            switch (Model.Chennel)
+            {
+                default:
+                    break;
+                case 1:
+                    <img src="~/Content/Picture/1.gif" class="_tvImage" />
+                    break;
+                case 2:
+                    <img src="~/Content/Picture/2.gif" class="_tvImage" />
+                    break;
+                case 3:
+                    <img src="~/Content/Picture/3.gif" class="_tvImage" />
+                    break;
+                case 4:
+                    <img src="~/Content/Picture/4.gif" class="_tvImage" />
+                    break;
+                case 5:
+                    <img src="~/Content/Picture/5.gif" class="_tvImage" />
+                    break;
+                case 6:
+                    <img src="~/Content/Picture/6.gif" class="_tvImage" />
+                    break;
+                case 7:
+                    <img src="~/Content/Picture/7.gif" class="_tvImage" />
+                    break;
+                case 8:
+                    <img src="~/Content/Picture/8.gif" class="_tvImage" />
+                    break;
+                case 9:
+                    <img src="~/Content/Picture/9.gif" class="_tvImage" />
+                    break;
+                case 10:
+                    <img src="~/Content/Picture/10.gif" class="_tvImage" />
+                    break;
+            }
+        }
+    }
+    <button type="button" class="_tvButtons" onclick="location.href='@Url.Action("OnOff", "TV", new { name = @Model.Name} )'">OnOff</button>
+    <button type="button" class="_tvButtons" onclick="location.href='@Url.Action("ChannelDown", "TV", new { name = @Model.Name })'">Ch <</button>
+    <button type="button" class="_tvButtons" onclick="location.href='@Url.Action("ChannelUp", "TV", new { name = @Model.Name })'">> Ch</button>
+    <button type="button" class="_tvButtonVolume" onclick="location.href='@Url.Action("VolumeDown", "TV", new { name = @Model.Name })'">V <</button>
+    <button type="button" class="_tvButtonVolume" onclick="location.href='@Url.Action("VolumeUp", "TV", new { name = @Model.Name })'">> V</button>
+    @{
+        if (!Model.State)
+        {
+            <span class="_tvPanelVolume">Volume</span>
+        }
+        else
+        {
+            if (Model.Volume == SetLevel.Low)
+            {
+                <span class="_tvPanelVolume">Volume - Low</span>
+            }
+            else if (Model.Volume == SetLevel.Medium)
+            {
+                <span class="_tvPanelVolume">Volume - Medium</span>
+            }
+            else if (Model.Volume == SetLevel.Height)
+            {
+                <span class="_tvPanelVolume">Volume - Height</span>
+            }
+        }
+    }
+</div>

@@ -1,0 +1,36 @@
+﻿@model HomeMVC.Burner
+@{
+    Layout = null;
+}
+<div class="_burners">
+    @{
+        if (Model.State)
+        {
+            <span class="_burnerPanelState">On</span>
+        }
+        else
+        {
+            <span class="_burnerPanelState">Off</span>
+        }
+        if (!Model.State)
+        {
+            <img src="~/Content/Picture/BurnerOff.jpg" class="_burnerImage" />
+        }
+        else if (Model.State && Model.BurnerLevel == SetLevel.Low)
+        {
+            <img src="~/Content/Picture/BurnerLow.jpg" class="_burnerImage" />
+        }
+        else if (Model.State && Model.BurnerLevel == SetLevel.Medium)
+        {
+            <img src="~/Content/Picture/BurnerMedium.jpg" class="_burnerImage" />
+        }
+        else if (Model.State && Model.BurnerLevel == SetLevel.Height)
+        {
+            <img src="~/Content/Picture/BurnerHeight.jpg" class="_burnerImage" />
+        }
+    }
+    <button type="button" class="_burnerButtonOnOff" onclick="location.href='@Url.Action("OnOff", "Burner", new { name = @Model.Name, parentName = @Model.ParentName } )'">OnOff</button>
+    <button type="button" class="_burnerButtonLevel" onclick="location.href='@Url.Action("LevelDown", "Burner", new { name = @Model.Name, parentName = @Model.ParentName })'"><</button>
+    <button type="button" class="_burnerButtonLevel" onclick="location.href='@Url.Action("LevelUp", "Burner", new { name = @Model.Name, parentName = @Model.ParentName })'">></button>
+</div>
+    

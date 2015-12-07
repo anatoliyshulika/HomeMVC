@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<img alt="Fon image" src="~/Content/Picture/Fon2.jpg" id="image"/>
+<div id="Device">
+    <div id="addmenu">
+        <form action="~/Home/AddDevice" method="post">
+            <input type="submit" value="ADD DEVICE" id="addDevice" /><br />
+            <span id="typeOfDevice">Choice a device</span><br />
+            <select id="selectDevice" name="typeOfDevice">
+                <option value="Lamp">Lamp</option>
+                <option value="TV">TV</option>
+                <option value="Bake">Bake</option>
+                <option value="Frige">Frige</option>
+                <option value="Radio">Radio</option>
+            </select><br />
+            <span id="labelNameOfDevice">Enter name of device</span>
+            <input type="text" id="TextBoxNameOfDevice" name="TextBoxNameOfDevice" />
+        </form>
+    </div>
+    @{
+        foreach (var dev in ((IDictionary<string, Devices>)ViewBag.DeviceList))
+        {
+            Html.RenderPartial(dev.Value.ViewPath, dev.Value);
+        }
+    }
+</div>
+
+

@@ -1,0 +1,26 @@
+﻿@model HomeMVC.Oven
+@{
+    Layout = null;
+}
+<div class="_oven">
+    @{
+        if(Model.State)
+        {
+            <span class="_panelOvenState">Oven On</span>
+        }
+        else
+        {
+            <span class="_panelOvenState">Oven Off</span>
+        }
+        if(Model.GetLampState())
+        {
+            <span class="_panelOvenState">Lamp On</span>
+        }
+        else
+        {
+            <span class="_panelOvenState">Lamp Off</span>
+        }
+    }
+    <button type="button" class="_ovenButtonOnOff" onclick="location.href='@Url.Action("OnOff", "Oven", new { parentName = @Model.ParentName } )'">OnOff</button>
+    <button type="button" class="_ovenButtonOnOff" onclick="location.href='@Url.Action("LampOnOff", "Oven", new { parentName = @Model.ParentName })'">OnOff</button>
+</div>
